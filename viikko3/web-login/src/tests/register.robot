@@ -35,7 +35,31 @@ Register With Nonmatching Password And Password Confirmation
     Set Password  joujou123
     Confirm Password  jeejee123
     Submit Credentials
-    Register Should Fail With Message  Invalid username or password
+    Register Should Fail With Message  Password and confirmation don't match
+
+Login After Successful Registration
+    Go To Register Page
+    Set Username  heippaa
+    Set Password  joujou123
+    Confirm Password  joujou123
+    Submit Credentials
+    Go To Login Page
+    Set Username  heippaa
+    Set Password  joujou123
+    Submit Credentials Login
+    Login Should Succeed
+
+Login After Failed Registration
+    Go To Register Page
+    Set Username  he
+    Set Password  joujou123
+    Confirm Password  joujou123
+    Submit Credentials
+    Go To Login Page
+    Set Username  he
+    Set Password  joujou123
+    Submit Credentials Login
+    Login Should Fail With Message  Invalid username or password
 
 *** Keywords ***
 Register Should Succeed
@@ -46,8 +70,19 @@ Register Should Fail With Message
     Register Page Should Be Open
     Page Should Contain  ${message}
 
+Login Should Succeed
+    Main Page Should Be Open
+
+Login Should Fail With Message
+    [Arguments]  ${message}
+    Login Page Should Be Open
+    Page Should Contain  ${message}
+
 Submit Credentials
     Click Button  Register
+
+Submit Credentials Login
+    Click Button  Login
 
 Set Username
     [Arguments]  ${username}

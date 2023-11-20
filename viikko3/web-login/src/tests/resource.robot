@@ -14,7 +14,7 @@ Open And Configure Browser
     ${options}  Evaluate  sys.modules['selenium.webdriver'].FirefoxOptions()  sys
     Call Method    ${options}    add_argument    --no-sandbox
     # seuraava rivi on kommentoitu toistaiseksi pois
-    Call Method  ${options}  add_argument  --headless
+    # Call Method  ${options}  add_argument  --headless
     Open Browser  browser=chrome  options=${options}
     Set Selenium Speed  ${DELAY}
 
